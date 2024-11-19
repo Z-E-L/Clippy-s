@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clippy's Barbershop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #5581fc;
+            color: #000000;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: bottom 100px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #f8f8f8;
+        }
+
+        .banner h2 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .slogan {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .services {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #ff4c4c;
+        }
+
+        .service {
+            display: inline-block;
+            margin: 0 20px;
+            vertical-align: top;
+        }
+
+        .service img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        .service p {
+            margin: 10px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .appointment {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .barbershop-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+            <h1 style="padding-bottom: 25px; font-size: 85px; font-family: fantasy;">C L I P P Y ' S</h1>
+        <nav>
+            <ul>
+                <li style="font-family: cursive;"><a href="index.html">Home</a></li>
+                <li style="font-family: cursive;"><a href="about.html">About</a></li>
+                <li style="font-family: cursive;"><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h2 style="font-family: fantasy; font-size: 70px;">Ready For A Change!</h2>
+        <p style="font-family: cursive;" class="slogan">Step into our barber shop, where every visit is an experience tailored just for you. Nestled in the heart of the bustling city, our establishment exudes a timeless charm, blending traditional barbering techniques with modern sophistication. As you enter, you're greeted by the comforting hum of clippers and the inviting aroma of grooming products. Our skilled barbers, with their meticulous attention to detail and passion for their craft, are committed to providing you with not just a haircut, but an escape from the everyday hustle. From classic cuts to contemporary styles, each appointment is a personalized journey, leaving you feeling refreshed, confident, and ready to take on the world. Relax in our vintage-inspired chairs, engage in friendly banter, and leave feeling like a true gentleman. At our barber shop, it's not just about the haircut – it's about the experience.</p>
+       
+    </div>
+
+    <section class="services">
+        <h2 style="font-family: fantasy; font-size: 50px;">Our Services</h2>
+        <h3>Payment will be done in-person after your amazing experience!</h3>
+        <div class="service">
+            <img src="RegularHaircut.jpg" alt="Regular Haircut">
+            <p>Regular Haircut</p>
+            <p>$25</p>
+        </div>
+        <div class="service">
+            <img src="BeardTrim.jpg" alt="Beard Trim">
+            <p>Beard Trim</p>
+            <p>$10</p>
+        </div>
+        <div class="service">
+            <img src="HairDye.jpg" alt="Hair Dye">
+            <p>Hair Dye</p>
+            <p>$50</p>
+        </div>
+    </section>
+
+    <section class="appointment">
+        <h2>Schedule an Appointment</h2>
+        <form id="appointmentForm" onsubmit="submitForm(event)">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date" required><br><br>
+            <label for="time">Time:</label><br>
+            <input type="time" id="time" name="time" min="09:00" max="19:00" required><br><br>
+            <input type="submit" value="Submit">
+          </form>    
+    </section>
+
+    <script>
+        function submitForm(event) {
+          event.preventDefault(); // Prevent form submission
+          var name = document.getElementById("name").value; // Get the value of the name input field
+          var date = document.getElementById("date").value; // Get the value of the date input field
+          var time = document.getElementById("time").value; // Get the value of the time input field
+       
+          // Format date as month, day, and year
+          var formattedDate = new Date(date);
+          var options = { year: 'numeric', month: 'long', day: 'numeric' };
+          formattedDate = formattedDate.toLocaleDateString('en-US', options);
+       
+          // Convert 24-hour time format to 12-hour time format
+          var splitTime = time.split(":");
+          var hours = parseInt(splitTime[0], 10);
+          var minutes = splitTime[1];
+          var ampm = hours >= 12 ? 'PM' : 'AM';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // Handle midnight (00:00) as 12 AM
+          time = hours + ':' + minutes + ' ' + ampm;
+       
+          alert("Hi " + name + "! Your appointment for " + formattedDate + " at " + time + " is booked successfully!"); // Show alert with name, formatted date, and time
+          document.getElementById("appointmentForm").reset(); // Reset the form
+        }
+        </script>
+
+</body>
+
+</html>

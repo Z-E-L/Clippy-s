@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Clippy's Barbershop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #5581fc;
+            color: #000000;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: bottom 100px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .box {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box h2 {
+            font-family: fantasy;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .box p {
+            font-family: cursive;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .image-box {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-box img {
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .rotating-images {
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rotating-images img {
+            width: 50%;
+            float: left;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 50%;
+            left: 70%; /* Adjusted position */
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            max-width: 50%;
+            text-align: center;
+        }
+
+        .image-text h2 {
+            font-family: fantasy;
+            font-size: 72px; /* Increased font size */
+            margin-bottom: 10px;
+        }
+
+        .image-text p {
+            font-family: cursive;
+            font-size: 54px; /* Increased font size */
+            color: #666;
+            margin: 0;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 style="padding-bottom: 25px; font-size: 85px; font-family: fantasy;">C L I P P Y ' S</h1>
+        <nav>
+            <ul>
+                <li style="font-family: cursive;"><a href="index.html">Home</a></li>
+                <li style="font-family: cursive;"><a href="about.html">About</a></li>
+                <li style="font-family: cursive;"><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section">
+        <div class="box">
+            <h2>ABOUT US</h2>
+            <p>Welcome to Clippy's Barber Shop, where scissors are sharper than our wit and style is served with a side of sass. Tucked away in the vibrant heart of Dahlonega, GA we're not just your average barber shop – we're a haven for follicular finesse and good times.</p>
+            <p>Our crew of skilled barbers doesn't just wield clippers, we're maestros of mane manipulation, turning ordinary haircuts into extraordinary experiences. Whether you're in the mood for a classic trim or daring to dive into the latest trends, we've got you covered, with a sprinkle of humor and a dash of charm.</p>
+            <p>But Clippy's isn't just about looking sharp – it's about feeling like a million bucks. So come on in, take a load off, and let us work our magic. With every snip and shave, we're not just crafting hair, we're crafting memories. So join the fun at Clippy's Barber Shop, where the hair is fresh and the laughs are endless.</p>
+        </div>
+
+        <div class="image-box">
+            <img src="Clippys-about.jpg" alt="Clippy's Image">
+        </div>
+    </div>
+
+    <div class="section rotating-images">
+        <img src="face1.png" alt="Face 1">
+        <div class="image-text">
+            <h2>Charles Clippys</h2>
+            <p>Founder</p>
+        </div>
+        <img src="face2.png" alt="Face 2">
+        <div class="image-text">
+            <h2>Justin Beiber</h2>
+            <p>Stylist Intern</p>
+        </div>
+        <img src="face3.png" alt="Face 3">
+        <div class="image-text">
+            <h2>Alyssa Bowen</h2>
+            <p>Stylist</p>
+        </div>
+        <div class="arrow arrow-left">&#10094;</div>
+        <div class="arrow arrow-right">&#10095;</div>
+    </div>
+
+    <script>
+        var currentIndex = 0;
+        var images = document.querySelectorAll('.rotating-images img');
+        var textBlocks = document.querySelectorAll('.rotating-images .image-text');
+
+        function showImage(index) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.display = 'none';
+                textBlocks[i].style.display = 'none';
+            }
+            images[index].style.display = 'block';
+            textBlocks[index].style.display = 'block';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        setInterval(nextImage, 5000);
+
+        document.querySelector('.arrow-left').addEventListener('click', function () {
+            prevImage();
+        });
+
+        document.querySelector('.arrow-right').addEventListener('click', function () {
+            nextImage();
+        });
+
+        showImage(currentIndex);
+    </script>
+</body>
+
+</html>
